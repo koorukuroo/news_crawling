@@ -29,8 +29,12 @@ jobs:
 
             - name: Commit file
               run: |
-                  git config --global user.name 'koorukuroo'
-                  git config --global user.email 'koorukuroo@example.com'
+                  git config --local user.name 'koorukuroo'
+                  git config --local user.email 'koorukuroo@example.com'
                   git add naver.txt
                   git commit -m "Add naver.txt"
-                  git -c http.extraheader="AUTHORIZATION: bearer ${{ secrets.GH_TOKEN }}" push origin HEAD:main
+            - name: Push
+              uses: ad-m/github-push-action@master
+              with:
+                  branch: "main"
+                  github_token: ${{ secrets.GH_TOKEN }} # 여기서 GH_TOKEN은 GitHub Secrets에 저장된 PAT입니다.
