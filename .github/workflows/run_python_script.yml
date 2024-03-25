@@ -12,6 +12,7 @@ jobs:
               uses: actions/checkout@v2
               with:
                   persist-credentials: false # 이 줄을 추가합니다
+                  token: ${{ secrets.GH_TOKEN }} # 여기서 GH_TOKEN은 GitHub Secrets에 저장된 PAT입니다.
 
             - name: Set up Python
               uses: actions/setup-python@v2
